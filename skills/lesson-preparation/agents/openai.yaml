@@ -1,0 +1,4 @@
+interface:
+  display_name: "备课讲义"
+  short_description: "把已有 C++、Python 原稿整理成教师讲义，衔接来源核对、教学设计和代码验收"
+  default_prompt: "使用 $lesson-preparation，根据当前项目中的课程原稿制作讲义版，保留原稿并完成必要验收。"
