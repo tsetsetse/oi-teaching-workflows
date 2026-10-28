@@ -2,13 +2,14 @@
 name: lesson-preparation
 description: 当用户要求根据现有 C++ 或 Python 课程原稿备课、整理教师讲义、制作讲义版笔记或审阅备课方案时使用。适用于单课教学流程；单题解答、PPT制作、通用笔记排版不单独触发。
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # 备课讲义工作流
 
 把已有课程整理成可直接授课的讲义，并留下能够继续工作的检查记录。
 目标项目的规则负责本地约定；本技能负责来源、教学设计、实现与验收之间的衔接。
+可独立调用，也可由 `teaching-workflows` 交接进入；沿用同一任务资料、授权和进度记录，不重复启动已完成且有效的阶段。
 
 ## 1. 确定本次输入与边界
 
@@ -28,7 +29,7 @@ metadata:
 
 ## 2. 锁定题面与教学主线
 
-按需使用可用的 `solve-with-computational-thinking`；写 Obsidian 笔记时使用 `obsidian-markdown`，需要实际控制资料库时再用 `obsidian-cli`。
+完整套件内置 `solve-with-computational-thinking` 与 `interactive-algorithm-demo`，按需发现并读取；直接使用解包源码时可从本技能同级目录读取模块。写 Obsidian 笔记时使用可用的 `obsidian-markdown`，需要实际控制资料库时再用 `obsidian-cli`。
 技能不可用时沿用本流程完成可做的工作，说明影响，不假称调用成功。
 
 - 逐题核对题号、原始来源、完整条件、输入输出、数据范围、公开样例与特殊约定。图片或 PDF 有疑点时回看原件；不能用旧讲义代替原题核对。

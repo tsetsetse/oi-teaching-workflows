@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>前缀和与区间查询 · 算法实验室</title>
+<style>
+:root{color-scheme:light;--ink:#20332e;--muted:#65766f;--green:#157253;--pale:#e9f4ec;--blue:#2864b6;--purple:#8054b3;--line:#dce5dd;--paper:#fffefa}
+*{box-sizing:border-box}body{margin:0;background:#f2f5ee;color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button,select{cursor:pointer}button:disabled{cursor:default;opacity:.4}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #d89720;outline-offset:3px}button{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:8px 13px;font-weight:600;min-height:44px}button:hover:enabled{background:var(--pale)}button.primary{background:var(--green);border-color:var(--green);color:#fff}button.primary:hover:enabled{background:#0c5b41}button.small{font-size:14px;padding:7px 10px}h1,h2,h3,p{margin:0}h1{font-size:clamp(25px,3vw,36px);font-weight:750;letter-spacing:-1px;line-height:1.3}h2{font-size:17px}h3{font-size:14px;color:var(--muted);margin-bottom:9px}.shell{max-width:1480px;margin:auto;padding:26px 28px}.masthead{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--green);font-weight:700;margin-bottom:6px}.subtitle{color:var(--muted);margin-top:7px;font-size:14px}.offline{font-size:12px;color:var(--muted);border-left:1px solid var(--line);padding-left:18px;white-space:nowrap}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px;align-items:start}.settings{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}.settings h2{margin-bottom:15px}.field{display:block;margin:14px 0 0;font-size:14px;font-weight:650}.field small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin:4px 0 7px}textarea,select{display:block;width:100%;border:1px solid #c7d3cb;border-radius:8px;background:white;color:var(--ink);padding:10px;min-height:44px}textarea{resize:vertical;font:16px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}.setting-actions{display:flex;gap:6px;margin-top:12px}.setting-actions button{flex:1}.message{font-size:12px;min-height:22px;margin-top:9px;color:var(--muted)}.message.error{color:#b02b2b}.settings hr{border:0;border-top:1px solid var(--line);margin:18px 0}.definition{font-size:13px}.definition p+p{margin-top:7px}.definition b{color:var(--green)}details{font-size:13px;margin-top:14px}summary{cursor:pointer}details pre{font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#f3f5ef;padding:10px;border-radius:8px;white-space:pre-wrap}.workspace{min-width:0}.story{border-bottom:1px solid var(--line);padding:1px 0 16px;margin-bottom:16px;display:flex;gap:14px;align-items:start}.step-icon{background:var(--green);color:#fff;font-size:13px;font-weight:700;border-radius:10px;padding:8px 10px;flex-shrink:0}.story h2{font-size:20px;line-height:1.4;margin-top:2px}.story p{font-size:14px;color:var(--muted);margin-top:5px;min-height:44px}.split{display:grid;grid-template-columns:minmax(270px,.85fr) minmax(0,1.5fr);gap:16px;align-items:stretch}.code-panel{background:#172923;border-radius:13px;overflow:hidden;color:#e1ece5;min-width:0}.code-head{padding:13px 14px;background:#20362e;display:flex;justify-content:space-between;align-items:center;font-size:13px}.code-head span{color:#9db8aa;font-size:12px}.code{margin:0;padding:13px 0;overflow:auto;font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4}.code-line{display:block;min-width:max-content;padding:0 15px 0 0;border-left:3px solid transparent}.line-no{display:inline-block;width:35px;margin-right:10px;text-align:right;color:#80988a;user-select:none}.code-line.active{background:#394732;border-left-color:#e7be57;color:#fff6cd}.code-line.active .line-no{color:#e7be57}.visual-panel{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:18px;min-width:0;display:flex;flex-direction:column;gap:20px}.visual-header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.badge{font-size:12px;padding:3px 9px;border-radius:6px;background:var(--pale);color:var(--green);font-weight:600}.legend{font-size:12px;color:var(--muted)}.legend span{margin-right:10px}.legend .blue{color:var(--blue)}.legend .purple{color:var(--purple)}.array-scroll{overflow:auto;padding-bottom:7px}.array-table{border-collapse:separate;border-spacing:5px;width:100%;font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;text-align:center}.array-table th{font-size:12px;white-space:nowrap;min-width:40px;color:var(--muted);font-weight:500}.array-table td{min-width:48px;height:45px;border-radius:7px;background:#f1f3ed;border:1px solid #e4e8df;padding:5px;color:var(--ink)}.array-table .index td{height:24px;background:none;border:none;color:var(--muted);font-size:12px}.array-table td.empty{color:#a8b1a8}.array-table td.current{background:#e7f0fd;border:2px solid var(--blue);font-weight:750;color:var(--blue)}.array-table td.previous{background:#f3edfa;border:2px dashed var(--purple);color:var(--purple)}.array-table td.in-range{background:#e9f4ec;border-bottom:3px solid var(--green)}.array-table td.cancelled{background:#f2eefa;color:var(--purple);text-decoration:line-through}.math{font-variant-numeric:tabular-nums;background:#f5f7f0;border-radius:10px;padding:17px 12px;text-align:center}.math-label{font-size:12px;color:var(--muted);margin-bottom:8px}.equation{font:600 clamp(19px,2vw,27px)/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.equation .blue{color:var(--blue)}.equation .purple{color:var(--purple)}.equation .green{color:var(--green)}.math-note{font-size:13px;color:var(--muted);margin-top:8px}.range-explain{font-size:13px;color:var(--muted);min-height:60px}.range-explain b{color:var(--ink)}.question{margin-top:auto;border-left:3px solid #d69d35;padding:8px 12px;background:#fcf6e8;font-size:13px;color:#6b562d}.question strong{display:block;font-size:12px;margin-bottom:3px}.results{border-top:1px solid var(--line);padding-top:12px;display:flex;gap:10px;align-items:start}.results-label{font-size:12px;color:var(--muted);white-space:nowrap}.result-list{font-size:13px;display:flex;gap:8px;flex-wrap:wrap}.result-chip{background:var(--pale);color:var(--green);padding:3px 9px;border-radius:6px;font-variant-numeric:tabular-nums}.player{margin-top:16px;background:#fffefa;border:1px solid var(--line);border-radius:12px;padding:13px 16px}.timeline{display:flex;gap:13px;align-items:center;margin-bottom:11px}.timeline input{width:100%;accent-color:var(--green);min-height:24px;cursor:pointer}.counter{font-size:12px;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}.player-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.transport{display:flex;gap:6px;flex-wrap:wrap}.speed{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.speed select{width:auto;min-height:44px;padding:7px;font-size:14px}.keyboard{font-size:11px;color:var(--muted)}.footnote{margin-top:16px;font-size:12px;color:var(--muted)}.footnote code{color:var(--green)}[hidden]{display:none!important}.split.animation-only,.split.code-only{grid-template-columns:minmax(0,1fr)}.split.code-only .code{font-size:15px}
+.code{position:relative}
+@media(min-width:1500px){.code{font-size:14px}}@media(max-width:1120px){.layout{grid-template-columns:200px minmax(0,1fr);gap:14px}.shell{padding:20px}.split{grid-template-columns:minmax(0,1fr)}.code-panel{order:2}.visual-panel{order:1}.code{max-height:340px}.story p{min-height:0}.settings{padding:14px}}@media(max-width:680px){.shell{padding:16px 12px}.masthead{align-items:start;margin-bottom:18px}.offline{display:none}.layout{grid-template-columns:minmax(0,1fr)}.settings{padding:16px}.settings .data-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.settings h2{margin-bottom:0}.setting-actions{justify-content:start}.setting-actions button{flex:initial}.definition{display:none}.settings hr{margin:12px 0}.settings .field{margin-top:8px}.visual-panel{padding:14px}.story h2{font-size:18px}.step-icon{padding:6px 8px}.player{padding:12px}.keyboard{display:none}.equation{font-size:20px}.subtitle{font-size:13px}.array-table td{min-width:42px}.transport button{padding:8px 10px}.speed{margin-top:2px}.footnote{font-size:11px}}@media(max-width:380px){.settings .data-fields{grid-template-columns:1fr}.masthead h1{font-size:24px}.array-table{font-size:13px}.visual-panel{padding:10px}}@media(prefers-reduced-motion:no-preference){.array-table td{transition:background .18s,border-color .18s}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="masthead">
+    <div><div class="eyebrow">算法实验室 / 01</div><h1>前缀和与区间查询</h1><p class="subtitle">先算好每一个前缀，再用一次减法求出一段的和。</p></div>
+    <div class="offline">C++14 · 教学演示<br>离线可用 · 数据仅在本页处理</div>
+  </header>
+  <div class="layout">
+    <aside class="settings" aria-label="演示设置">
+      <h2>数据与查询</h2>
+      <form id="dataForm" novalidate>
+        <div class="data-fields">
+          <label class="field" for="arrayInput">原数组 a<small id="arrayHelp">1–16 个整数；用空格或逗号分隔。<br>每个数在 −999999～999999 之间。</small><textarea id="arrayInput" rows="3" aria-describedby="arrayHelp" spellcheck="false">5 8 12 6</textarea></label>
+          <label class="field" for="queryInput">查询区间 [l, r]<small id="queryHelp">下标从 1 开始；每行写 l r。<br>1–8 组查询，满足 1 ≤ l ≤ r ≤ n。</small><textarea id="queryInput" rows="3" aria-describedby="queryHelp" spellcheck="false">1 2
+2 4</textarea></label>
+        </div>
+        <div class="setting-actions"><button type="submit" class="primary small">应用数据</button><button id="example" type="button" class="small">恢复样例</button></div>
+        <p id="inputMessage" class="message" role="status">当前使用上面的样例数据。</p>
+      </form>
+      <hr>
+      <label class="field" for="viewMode">观察方式</label>
+      <select id="viewMode"><option value="both">代码 + 动画</option><option value="animation">只看动画</option><option value="code">只看代码</option></select>
+      <hr>
+      <div class="definition"><h3>两个需要记住的约定</h3><p><b>s[i]</b>：原数组第 1 项到第 i 项的总和。</p><p><b>s[0] = 0</b>：没有元素时，总和是 0。</p></div>
+      <details><summary>当前数据对应的标准输入</summary><pre id="standardInput"></pre><p>首行是 n 和 q；第二行是数组，后面每行是一组查询。演示限制用于方便观察。</p></details>
+    </aside>
+    <main class="workspace">
+      <div class="story" aria-live="polite" aria-atomic="true"><span id="phase" class="step-icon">准备</span><div><h2 id="stepTitle">初始化前缀和</h2><p id="stepDetail">从 s[0] = 0 开始。</p></div></div>
+      <div id="split" class="split">
+        <section id="codePanel" class="code-panel" aria-label="与演示同步的完整 C++14 程序"><div class="code-head"><b>同步代码</b><span>黄色行 = 当前步骤</span></div><pre class="code"><code id="cppCode"></code></pre></section>
+        <section id="visualPanel" class="visual-panel" aria-label="前缀和状态与区间求和动画">
+          <div class="visual-header"><h2 id="visualTitle">构建前缀和</h2><span id="stateBadge" class="badge">s[0] = 0</span></div>
+          <div class="legend"><span class="blue">实线蓝框：当前项 / 右前缀</span><span class="purple">虚线紫框：前一项 / 左前缀</span></div>
+          <div class="array-scroll" role="region" aria-label="数组和前缀和表格，可横向滚动"><table class="array-table" id="arrayTable"></table></div>
+          <div class="math"><p id="mathLabel" class="math-label">空前缀的和</p><div id="equation" class="equation">s[0] = 0</div><p id="mathNote" class="math-note">下标 0 不对应一个输入元素。</p></div>
+          <div id="rangeExplain" class="range-explain"></div>
+          <div class="question"><strong>暂停想一想</strong><span id="prompt"></span></div>
+          <div class="results"><span class="results-label">已完成查询</span><div id="resultList" class="result-list"><span class="text-muted">尚未开始</span></div></div>
+        </section>
+      </div>
+      <section class="player" aria-label="演示播放控制">
+        <div class="timeline"><label for="timeline" class="counter">演示进度</label><input type="range" id="timeline" min="0" max="10" value="0" aria-label="跳转到演示步骤"><span id="counter" class="counter">1 / 11</span></div>
+        <div class="player-actions"><div class="transport"><button id="prev" type="button">← 上一步</button><button id="play" type="button" class="primary">播放</button><button id="next" type="button">下一步 →</button><button id="reset" type="button">重置</button></div><div class="speed"><label for="speed">速度</label><select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="3">3×</option></select><span class="keyboard">空格播放 / 暂停 · ← → 单步</span></div></div>
+      </section>
+      <p class="footnote">逐项查询需要 O(r − l + 1)；前缀和用 O(n) 预处理，之后每次查询 O(1)，前缀数组空间 O(n)。<br>区间和 = <code>s[r] − s[l − 1]</code>；数组允许包含负数，前缀和不一定递增。</p>
+    </main>
+  </div>
+</div>
+<script id="algorithm">
+function parseInput(arrayText, queryText) {
+    const tokens = arrayText.trim().split(/[\s,，]+/).filter(Boolean);
+    if (tokens.length < 1 || tokens.length > 16) throw new Error('原数组需要 1–16 个整数。');
+    const a = tokens.map(token => {
+        if (!/^[+-]?\d+$/.test(token) || Math.abs(Number(token)) > 999999) throw new Error('数组只能填写 −999999～999999 之间的整数。');
+        return Number(token);
+    });
+    const rows = queryText.trim().split(/[\n;；]+/).map(row => row.trim()).filter(Boolean);
+    if (rows.length < 1 || rows.length > 8) throw new Error('请填写 1–8 组查询，每行写两个下标 l r。');
+    const queries = rows.map((row, index) => {
+        const parts = row.split(/[\s,，]+/).filter(Boolean);
+        if (parts.length !== 2 || parts.some(part => !/^\d+$/.test(part))) throw new Error(`第 ${index + 1} 组查询需要两个整数下标。`);
+        const [l, r] = parts.map(Number);
+        if (l < 1 || l > r || r > a.length) throw new Error(`第 ${index + 1} 组查询需要满足 1 ≤ l ≤ r ≤ ${a.length}。`);
+        return {l, r};
+    });
+    return {a, queries};
+}
+function buildSteps(model) {
+    const s = [0, ...model.a.map(() => null)];
+    const results = [];
+    const steps = [];
+    function add(event) { steps.push({...event, s: s.slice(), results: results.slice()}); }
+    add({kind: 'init', line: 'init', title: '初始化：没有元素时，总和是 0', detail: 's[0] = 0 是空前缀。其余位置尚未计算，先显示为“—”。', prompt: '查询从第 1 项开始时，应该减去哪个前缀？'});
+    model.a.forEach((value, index) => {
+        const i = index + 1;
+        s[i] = s[i - 1] + value;
+        add({kind: 'build', line: 'build', i, title: `构建第 ${i} 个前缀：在前一个总和上加一项`, detail: `s[${i - 1}] 已经包含前 ${i - 1} 项；再加上 a[${i}]，就得到前 ${i} 项的总和。`, prompt: i < model.a.length ? `下一步需要用到 s[${i}] 和哪一个数组元素？` : '如果每次查询都从 l 加到 r，多个重叠区间会重复计算哪些项？'});
+    });
+    model.queries.forEach(({l, r}, queryIndex) => {
+        add({kind: 'select', line: 'readQuery', l, r, queryIndex, title: `查询 ${queryIndex + 1}：求第 ${l} 项到第 ${r} 项的和`, detail: '绿色标记的是本次查询保留的区间。前缀和已经全部算好，现在只需要找到两个位置。', prompt: `s[${r}] 包含第 1～${r} 项，哪些项不属于本次查询？`});
+        add({kind: 'subtract', line: 'answer', l, r, queryIndex, title: `用右前缀减去左侧多余部分`, detail: l === 1 ? `查询从第 1 项开始，不需要移除任何元素，所以减去空前缀 s[0] = 0。` : `s[${r}] 包含第 1～${r} 项；减去 s[${l - 1}] 包含的第 1～${l - 1} 项，恰好剩下第 ${l}～${r} 项。`, prompt: l === r ? '只查询一个元素时，这个减法为什么仍然成立？' : `如果误写成 s[${r}] − s[${l}]，会多减掉哪一个元素？`});
+        results.push(s[r] - s[l - 1]);
+        add({kind: 'answer', line: 'answer', l, r, queryIndex, title: `查询 ${queryIndex + 1} 完成：区间和为 ${results[results.length - 1]}`, detail: '两个前缀中重叠的部分被抵消，留下的就是目标区间。程序输出这个差值，然后处理下一组查询。', prompt: queryIndex < model.queries.length - 1 ? '下一组查询需要重新计算前缀和吗？为什么？' : '如果原数组的一项发生变化，已有的前缀和还能直接使用吗？'});
+    });
+    return steps;
+}
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const lines = [
+    ['#include <iostream>'],
+    ['using namespace std;'],
+    [''],
+    ['int main()'],
+    ['{'],
+    ['    int n, q;'],
+    ['    cin >> n >> q;'],
+    ['    long long a[17], s[17] = {};', 'init'],
+    ['    for (int i = 1; i <= n; i++)'],
+    ['    {'],
+    ['        cin >> a[i];'],
+    ['        s[i] = s[i - 1] + a[i];', 'build'],
+    ['    }'],
+    ['    while (q--)'],
+    ['    {'],
+    ['        int l, r;'],
+    ['        cin >> l >> r;', 'readQuery'],
+    ["        cout << s[r] - s[l - 1] << '\\n';", 'answer'],
+    ['    }'],
+    ['    return 0;'],
+    ['}']
+];
+lines.forEach(([text, key], index) => {
+    const row = document.createElement('span');
+    row.className = 'code-line';
+    if (key) row.dataset.key = key;
+    const number = document.createElement('span');
+    number.className = 'line-no';
+    number.setAttribute('aria-hidden', 'true');
+    number.textContent = index + 1;
+    row.append(number, document.createTextNode(text || ' '));
+    $('cppCode').append(row);
+});
+let model, steps, position = 0, timer = null;
+const signed = n => n < 0 ? `(${n})` : String(n);
+function pause() {
+    clearInterval(timer);
+    timer = null;
+    $('play').textContent = position === steps.length - 1 ? '重新播放' : '播放';
+    $('play').setAttribute('aria-pressed', 'false');
+}
+function renderTable(state) {
+    const table = $('arrayTable');
+    table.replaceChildren();
+    const names = ['下标 i', 'a[i]', 's[i]'];
+    names.forEach((name, rowIndex) => {
+        const row = document.createElement('tr');
+        if (rowIndex === 0) row.className = 'index';
+        const heading = document.createElement('th');
+        heading.scope = 'row';
+        heading.textContent = name;
+        row.append(heading);
+        for (let i = 0; i <= model.a.length; i++) {
+            const cell = document.createElement('td');
+            const value = rowIndex === 0 ? i : rowIndex === 1 ? (i === 0 ? '空' : model.a[i - 1]) : state.s[i] === null ? '—' : state.s[i];
+            cell.textContent = value;
+            cell.dataset.index = i;
+            cell.dataset.row = rowIndex;
+            if (value === '—' || value === '空') cell.classList.add('empty');
+            if (state.kind === 'init' && rowIndex === 2 && i === 0) cell.classList.add('current');
+            if (state.kind === 'build') {
+                if (rowIndex > 0 && i === state.i) cell.classList.add('current');
+                if (rowIndex === 2 && i === state.i - 1) cell.classList.add('previous');
+            }
+            if (state.l !== undefined) {
+                if (rowIndex === 1 && i >= state.l && i <= state.r) cell.classList.add('in-range');
+                if (rowIndex === 1 && state.kind !== 'select' && i > 0 && i < state.l) cell.classList.add('cancelled');
+                if (rowIndex === 2 && i === state.r) cell.classList.add('current');
+                if (rowIndex === 2 && i === state.l - 1) cell.classList.add('previous');
+            }
+            row.append(cell);
+        }
+        table.append(row);
+    });
+    table.setAttribute('aria-label', `原数组 ${model.a.join('，')}；当前前缀和 ${state.s.map(v => v === null ? '未计算' : v).join('，')}`);
+}
+function render() {
+    const state = steps[position];
+    $('phase').textContent = state.kind === 'init' ? '准备' : state.kind === 'build' ? '构建' : '查询';
+    $('stepTitle').textContent = state.title;
+    $('stepDetail').textContent = state.detail;
+    $('prompt').textContent = state.prompt;
+    $('visualTitle').textContent = state.l === undefined ? '从左到右，逐项累加' : `目标区间 [${state.l}, ${state.r}]`;
+    $('stateBadge').textContent = state.kind === 'init' ? 's[0] = 0' : state.kind === 'build' ? `已构建 ${state.i} / ${model.a.length} 项` : `第 ${state.queryIndex + 1} / ${model.queries.length} 组查询`;
+    document.querySelectorAll('.code-line').forEach(row => {
+        const active = row.dataset.key === state.line;
+        row.classList.toggle('active', active);
+        if (active) row.setAttribute('aria-current', 'step'); else row.removeAttribute('aria-current');
+    });
+    const codeBox = $('cppCode').parentElement;
+    const activeLine = document.querySelector('.code-line.active');
+    codeBox.scrollTop = Math.max(0, activeLine.offsetTop - codeBox.clientHeight / 2);
+    renderTable(state);
+    if (state.kind === 'init') {
+        $('mathLabel').textContent = '空前缀的和';
+        $('equation').textContent = 's[0] = 0';
+        $('mathNote').textContent = '下标 0 不对应一个输入元素。';
+        $('rangeExplain').textContent = '表格中的“—”表示尚未计算；不是数值 0。点击“下一步”，开始处理第 1 个元素。';
+    } else if (state.kind === 'build') {
+        const i = state.i;
+        $('mathLabel').textContent = `s[${i}] = s[${i - 1}] + a[${i}]`;
+        $('equation').innerHTML = `<span class="purple">${signed(state.s[i - 1])}</span> + <span class="blue">${signed(model.a[i - 1])}</span> = <span class="green">${state.s[i]}</span>`;
+        $('mathNote').textContent = `前 ${i - 1} 项的总和 + 第 ${i} 项 = 前 ${i} 项的总和`;
+        $('rangeExplain').textContent = (i === 1 ? 's[1] 就是 a[1]。' : `s[${i}] 始终表示 a[1] + … + a[${i}]。`) + '因为此前的前缀和已正确计算，只要再加上当前项，这个含义就保持成立。';
+    } else {
+        const {l, r} = state;
+        $('mathLabel').textContent = `区间和 = s[${r}] − s[${l - 1}]`;
+        const reveal = state.kind === 'answer';
+        $('equation').innerHTML = `<span class="blue">${signed(state.s[r])}</span> − <span class="purple">${signed(state.s[l - 1])}</span> = <span class="green">${reveal ? state.s[r] - state.s[l - 1] : '?'}</span>`;
+        $('mathNote').textContent = reveal ? `a[${l}] 到 a[${r}] 的总和：${model.a.slice(l - 1, r).map(signed).join(' + ')} = ${state.s[r] - state.s[l - 1]}` : '先判断两个前缀分别覆盖哪些元素，再进行减法。';
+        $('rangeExplain').innerHTML = l === 1 ? `<b>保留第 1～${r} 项。</b> 左侧没有多余元素，所以减去 s[0] = 0。` : `<b>右前缀 s[${r}]：</b> 包含第 1～${r} 项。<br><b>左前缀 s[${l - 1}]：</b> 包含第 1～${l - 1} 项。<br>${state.kind === 'select' ? '下一步将划去左侧多余的元素。' : `划去部分互相抵消，绿色区间第 ${l}～${r} 项被保留。`}`;
+    }
+    $('resultList').replaceChildren();
+    if (!state.results.length) $('resultList').textContent = '尚未完成查询';
+    state.results.forEach((result, index) => {
+        const chip = document.createElement('span');
+        chip.className = 'result-chip';
+        chip.textContent = `[${model.queries[index].l}, ${model.queries[index].r}] → ${result}`;
+        $('resultList').append(chip);
+    });
+    $('timeline').value = position;
+    $('timeline').setAttribute('aria-valuetext', `${position + 1} / ${steps.length}：${state.title}`);
+    $('counter').textContent = `${position + 1} / ${steps.length}`;
+    $('prev').disabled = position === 0;
+    $('next').disabled = position === steps.length - 1;
+    if (!timer) $('play').textContent = position === steps.length - 1 ? '重新播放' : '播放';
+}
+function applyData() {
+    try {
+        const nextModel = parseInput($('arrayInput').value, $('queryInput').value);
+        const nextSteps = buildSteps(nextModel);
+        if (steps) pause();
+        model = nextModel;
+        steps = nextSteps;
+        position = 0;
+        $('timeline').max = steps.length - 1;
+        $('inputMessage').className = 'message';
+        $('inputMessage').textContent = `已应用 ${model.a.length} 个数、${model.queries.length} 组查询。`;
+        $('arrayInput').removeAttribute('aria-invalid');
+        $('queryInput').removeAttribute('aria-invalid');
+        $('standardInput').textContent = [`${model.a.length} ${model.queries.length}`, model.a.join(' '), ...model.queries.map(({l,r}) => `${l} ${r}`)].join('\n');
+        render();
+    } catch (error) {
+        if (steps) pause();
+        $('inputMessage').className = 'message error';
+        $('inputMessage').textContent = error.message + ' 演示仍保留上次应用的数据。';
+    }
+}
+function move(delta) {
+    pause();
+    position = Math.max(0, Math.min(steps.length - 1, position + delta));
+    render();
+}
+function start() {
+    if (position === steps.length - 1) { position = 0; render(); }
+    $('play').textContent = '暂停';
+    $('play').setAttribute('aria-pressed', 'true');
+    timer = setInterval(() => {
+        position++;
+        if (position >= steps.length - 1) { position = steps.length - 1; pause(); }
+        render();
+    }, 1600 / Number($('speed').value));
+}
+$('dataForm').addEventListener('submit', event => { event.preventDefault(); applyData(); });
+$('example').addEventListener('click', () => { $('arrayInput').value = '5 8 12 6'; $('queryInput').value = '1 2\n2 4'; applyData(); });
+['arrayInput', 'queryInput'].forEach(id => $(id).addEventListener('input', () => { pause(); $('inputMessage').className = 'message'; $('inputMessage').textContent = '数据已编辑；点击“应用数据”后更新演示。'; }));
+$('prev').addEventListener('click', () => move(-1));
+$('next').addEventListener('click', () => move(1));
+$('reset').addEventListener('click', () => { pause(); position = 0; render(); });
+$('play').addEventListener('click', () => timer ? pause() : start());
+$('speed').addEventListener('change', () => { if (timer) { pause(); start(); } });
+$('timeline').addEventListener('input', () => { pause(); position = Number($('timeline').value); render(); });
+$('viewMode').addEventListener('change', () => {
+    const mode = $('viewMode').value;
+    $('codePanel').hidden = mode === 'animation';
+    $('visualPanel').hidden = mode === 'code';
+    $('split').className = 'split' + (mode === 'animation' ? ' animation-only' : mode === 'code' ? ' code-only' : '');
+    render();
+});
+document.addEventListener('keydown', event => {
+    if (event.target.closest('input, textarea, select, summary') || event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+    if (event.key === ' ' && event.target.closest('button')) return;
+    if (event.key === ' ') { event.preventDefault(); timer ? pause() : start(); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden && steps) pause(); });
+applyData();
+$('play').setAttribute('aria-pressed', 'false');
+</script>
+</body>
+</html>

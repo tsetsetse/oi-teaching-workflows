@@ -1,0 +1,4 @@
+interface:
+  display_name: "CSP-J/S 出题与验题"
+  short_description: "生成可复现的 CSP-J/S 题面、题解、标准程序、测试数据与验收报告"
+  default_prompt: "请使用 $csp-contest-author 为我制作一套 CSP-J 复赛模拟题，包含四道题、完整题解、C++ 标准与暴力程序、可复现测试数据及校验报告。"

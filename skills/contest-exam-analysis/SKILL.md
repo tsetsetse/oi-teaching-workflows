@@ -2,12 +2,13 @@
 name: contest-exam-analysis
 description: 当用户要求编写或核验单个竞赛题解、GESP 一至八级整卷解析，或 CSP-J/S 初赛与复赛逐题详细解析时使用。覆盖原卷核对、逐小问解析、多视角解法、分层得分完整代码与验证；命题组卷使用相应命题技能。
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # 竞赛与等级考试解析核验
 
 把指定原题或试卷整理成来源可追溯、逐题完整、推导可讲、程序有证据的中文解析。默认交付 Markdown 解析、编程题各层完整程序和必要核验记录；交互演示按教学难点选配，PPT/PDF 按本次要求。
+可独立调用，也可由 `teaching-workflows` 交接进入；沿用同一任务资料、授权和进度记录，不重复启动已完成且有效的阶段。
 
 ## 1. 锁定目标、范围与来源
 
@@ -32,7 +33,7 @@ metadata:
 
 ## 3. 编写解析与各层完整实现
 
-按 [已有技能的交接约定](references/skill-handoffs.md) 使用当前可用的 `gesp-solver`、`solve-with-computational-thinking`、Obsidian 等能力，统一遵守本次要求、原题与目标项目约定。按需读取，不复制独立技能，不把提到技能名当作已经调用。
+本套件包含完整的 `gesp-solver`、`solve-with-computational-thinking`、`interactive-algorithm-demo` 与 `csp-contest-author`。按 [已有技能的交接约定](references/skill-handoffs.md) 发现并读取对应模块；Obsidian等外部能力按实际环境使用。统一遵守本次要求、原题与目标项目约定，运行任务时不向课程目录复制技能，不把提到技能名当作已经调用。
 
 客观题逐选项解释理由；判断题说明条件，错命题给反例或修正；代码题展示执行追踪与语义依据。编程题读取 [多视角、分层得分与完整代码](references/programming-and-scores.md)，从题意、手算、模型、朴素瓶颈推导到各个有价值的解法、证明、复杂度和实现。
 

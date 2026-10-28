@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "oi-teaching-workflows",
+  "version": "0.4.0",
+  "description": "编程教学工作台统一入口：按需组织备课讲义、课件交付、竞赛与等级考试解析，并完整包含GESP、计算思维、交互演示和CSP命题验题能力。"
+}

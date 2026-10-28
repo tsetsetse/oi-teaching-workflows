@@ -1,0 +1,4 @@
+interface:
+  display_name: "算法交互演示"
+  short_description: "制作可离线使用的算法教学网页，支持逐步播放、代码同步和过程验证"
+  default_prompt: "使用 $interactive-algorithm-demo，为我的 C++ 或 Python 课程制作可修改数据、逐步播放、同步显示代码与解释的离线算法演示。"

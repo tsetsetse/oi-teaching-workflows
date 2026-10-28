@@ -1,0 +1,4 @@
+interface:
+  display_name: "计算思维题解教练"
+  short_description: "用计算思维完成编程题建模、算法推导、正确性验证与课堂化讲解"
+  default_prompt: "使用 $solve-with-computational-thinking 分析这道编程题，并生成可直接用于中文课堂的计算思维题解。"
