@@ -1,0 +1,4 @@
+interface:
+  display_name: "作业测评与学情反馈"
+  short_description: "设计课后作业与阶段、考前和赛前测评，依据实际作答生成详细教师诊断和鼓励型家长反馈"
+  default_prompt: "使用 $practice-assessment-feedback，按本次课程或测评目标完成授权范围内的作业设计、核验与学情反馈，保留原始作答并以实际证据为依据。"

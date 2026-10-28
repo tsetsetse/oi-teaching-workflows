@@ -1,4 +1,4 @@
 interface:
   display_name: "编程教学工作台"
-  short_description: "统一组织编程备课、课件和考试解析，按需衔接计算思维、交互演示及验证"
+  short_description: "统一组织编程备课、课件、考试解析、作业测评与学情反馈，衔接配套能力和验证"
   default_prompt: "使用 $teaching-workflows，根据当前教学项目和本次目标选择合适流程，读取已有进度并完成本次授权范围内的工作。"
