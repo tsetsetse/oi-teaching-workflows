@@ -2,7 +2,7 @@
 name: courseware-delivery
 description: 当用户要求把已确定的 C++、Python 讲义制作成课堂课件，规划投影页与教师备注，更新教学 PPT，或验收课件与配套演示包时使用。单独写讲义、普通商务演示和只解一道题不单独触发。
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # 课件交付工作流

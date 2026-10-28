@@ -1,0 +1,132 @@
+{
+  "note": "人工审阅的自编例程；只运行逐项列出的文件和用例，不代表正式评分。",
+  "programs": [
+    {
+      "source": "src/pair-brute.cpp",
+      "cases": [
+        {
+          "stdin": "5\n2 1 2 2 1\n",
+          "stdout": "4\n"
+        },
+        {
+          "stdin": "1\n9\n",
+          "stdout": "0\n"
+        },
+        {
+          "stdin": "4\n7 7 7 7\n",
+          "stdout": "6\n"
+        },
+        {
+          "stdin": "2\n101 101\n",
+          "stdout": "1\n"
+        }
+      ]
+    },
+    {
+      "source": "src/pair-small-value.cpp",
+      "cases": [
+        {
+          "stdin": "5\n2 1 2 2 1\n",
+          "stdout": "4\n"
+        },
+        {
+          "stdin": "1\n9\n",
+          "stdout": "0\n"
+        },
+        {
+          "stdin": "4\n7 7 7 7\n",
+          "stdout": "6\n"
+        }
+      ]
+    },
+    {
+      "source": "src/pair-combined.cpp",
+      "cases": [
+        {
+          "stdin": "5\n2 1 2 2 1\n",
+          "stdout": "4\n"
+        },
+        {
+          "stdin": "1\n9\n",
+          "stdout": "0\n"
+        },
+        {
+          "stdin": "4\n7 7 7 7\n",
+          "stdout": "6\n"
+        },
+        {
+          "stdin": "2\n101 101\n",
+          "stdout": "1\n"
+        }
+      ]
+    },
+    {
+      "source": "src/pair-sort.cpp",
+      "cases": [
+        {
+          "stdin": "5\n2 1 2 2 1\n",
+          "stdout": "4\n"
+        },
+        {
+          "stdin": "1\n9\n",
+          "stdout": "0\n"
+        },
+        {
+          "stdin": "4\n7 7 7 7\n",
+          "stdout": "6\n"
+        },
+        {
+          "stdin": "2\n101 101\n",
+          "stdout": "1\n"
+        }
+      ]
+    },
+    {
+      "source": "src/pair-online-map.cpp",
+      "cases": [
+        {
+          "stdin": "5\n2 1 2 2 1\n",
+          "stdout": "4\n"
+        },
+        {
+          "stdin": "1\n9\n",
+          "stdout": "0\n"
+        },
+        {
+          "stdin": "4\n7 7 7 7\n",
+          "stdout": "6\n"
+        },
+        {
+          "stdin": "2\n101 101\n",
+          "stdout": "1\n"
+        }
+      ]
+    },
+    {
+      "source": "src/shared-loop-harness.cpp",
+      "cases": [
+        {
+          "stdin": "",
+          "stdout": "6"
+        }
+      ]
+    },
+    {
+      "source": "src/completed-sum.cpp",
+      "cases": [
+        {
+          "stdin": "1\n",
+          "stdout": "1\n"
+        },
+        {
+          "stdin": "3\n",
+          "stdout": "6\n"
+        },
+        {
+          "stdin": "100\n",
+          "stdout": "5050\n"
+        }
+      ]
+    }
+  ]
+}

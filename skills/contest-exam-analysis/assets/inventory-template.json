@@ -1,0 +1,25 @@
+{
+  "paper": {
+    "id": "按原卷填写唯一身份，含年月/组别/等级/语言/轮次",
+    "mode": "single",
+    "source": "按原卷填写来源位置、指纹及核验记录位置"
+  },
+  "expected_ids": ["P1"],
+  "items": [
+    {
+      "id": "P1",
+      "kind": "program",
+      "status": "pending",
+      "analysis": "analysis.md#P1",
+      "verification": "verification.md#P1",
+      "solutions": [
+        {
+          "id": "方案标识",
+          "code": "src/P1-solution.cpp",
+          "basis": "原题条款、适用范围与得分依据；未知分数如实说明",
+          "verification": "verification.md#P1-solution"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "paper": {
+    "id": "self-authored-pairs",
+    "mode": "single",
+    "source": "source-pairs.md；自编，非GESP/CSP真题"
+  },
+  "expected_ids": [
+    "P1"
+  ],
+  "items": [
+    {
+      "id": "P1",
+      "kind": "program",
+      "status": "verified",
+      "analysis": "pairs-analysis.md#P1",
+      "verification": "verification.md#pairs",
+      "solutions": [
+        {
+          "id": "A",
+          "code": "src/pair-brute.cpp",
+          "basis": "小n范围：S1；理论覆盖下界30，正式得分未知",
+          "verification": "verification.md#pairs"
+        },
+        {
+          "id": "B",
+          "code": "src/pair-small-value.cpp",
+          "basis": "小值域：S2；理论覆盖下界20，正式得分未知",
+          "verification": "verification.md#pairs"
+        },
+        {
+          "id": "C",
+          "code": "src/pair-combined.cpp",
+          "basis": "同一份组合程序覆盖S1+S2；理论下界50，正式得分未知",
+          "verification": "verification.md#pairs"
+        },
+        {
+          "id": "D",
+          "code": "src/pair-sort.cpp",
+          "basis": "排序分组覆盖全部范围；理论100，时空限制/正式得分未知",
+          "verification": "verification.md#pairs"
+        },
+        {
+          "id": "E",
+          "code": "src/pair-online-map.cpp",
+          "basis": "逐项贡献覆盖全部范围；理论100，时空限制/正式得分未知",
+          "verification": "verification.md#pairs"
+        }
+      ]
+    }
+  ]
+}

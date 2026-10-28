@@ -2,14 +2,15 @@
 
 面向青少儿 C++、Python 教学的 ChatGPT / Codex 工作流。源码独立维护，课程资料和成品留在日常教学项目。
 
-工作流分别负责备课与课件交付：
+工作流分别负责备课、课件交付与竞赛/等级考试解析：
 
 | 工作流 | 用途 | 当前状态 |
 | --- | --- | --- |
-| **备课讲义 `lesson-preparation`** | 从原稿组织来源核对、教学设计、讲义与程序验收 | v0.2.0，细化教学结构、推导与 Bug 实验 |
-| **课件交付 `courseware-delivery`** | 从确定讲义组织投影、教师备注、必要演示与实际成品验收 | v0.2.0 首次发布；完整制作链仍待真实课程试用 |
+| **备课讲义 `lesson-preparation`** | 从原稿组织来源核对、教学设计、讲义与程序验收 | v0.3.0，新增交互演示交接与验收 |
+| **课件交付 `courseware-delivery`** | 从确定讲义组织投影、教师备注、必要演示与实际成品验收 | v0.3.0，保留既有交付与设计协作；完整制作链仍待真实课程试用 |
+| **竞赛与等级考试解析核验 `contest-exam-analysis`** | 单题、GESP一至八级及CSP-J/S初复赛整卷逐题解析，含多视角与分层完整代码 | v0.3.0 首次发布；真实考试整卷仍待实际试用 |
 
-当前版本为 `v0.2.0`，两个工作流分别安装。竞赛题解与定时任务留待后续需求；源码同步不会自动更新个人技能安装。
+当前版本为 `v0.3.0`，三个工作流分别安装。源码同步不会自动更新个人技能安装；定时任务留待后续需求。
 
 ```text
 GitHub ↔ 工作流源码仓库
@@ -51,6 +52,18 @@ GitHub ↔ 工作流源码仓库
 新建完整讲义默认按“教学目标与前置知识 → 板书与课时 → 逐段讲稿 → 课堂练习 → 课后作业 → 可选拓展 → 易错点总结”组织，短课按实际需要合并。
 核心段落从原课情境提出问题，让学生先预测，再通过具体数据或状态追踪推导方法，映射到代码，并用 Bug 实验和同题练习检验理解。
 板书呈现核心认知、对照关系和可迁移方法；教师讲稿、预期回答、答案折叠与验收证据相互衔接。详见[教学结构与推导方式](skills/lesson-preparation/references/teaching-structure.md)。
+备课按教学难点配合 `interactive-algorithm-demo`，交接题意、代码版本、状态与观察目标；讲稿写打开时机、预测、操作及结论。见[备课交互交接](skills/lesson-preparation/references/interactive-handoff.md)。只读/仅规划不生成网页，程序、状态、浏览器与离线检查分别记录。
+
+## 竞赛与等级考试解析核验
+
+入口为 [contest-exam-analysis](skills/contest-exam-analysis/SKILL.md)，安装后可在课程项目中调用，也可指定源码文件试用：
+
+> 使用 $contest-exam-analysis，按指定原卷完成 GESP 整卷详细解析，逐选项说明、逐小问核对；编程题给出不同视角和各层得分方案的完整 C++ 程序，分别验证并记录证据。
+
+支持单题、GESP一至八级指定语言/等级的原卷、CSP-J/S初赛与复赛整卷；按实际原卷题型、题量、年份/组别、测试点和评分设置工作。每个被列为解法或分层得分方案的方法都有独立完整程序，不能只给对照表、伪代码或修改提示。理论覆盖、本地实测与未知分数分别记录。
+
+已有能力按[交接约定](skills/contest-exam-analysis/references/skill-handoffs.md)使用：GESP逐题分析、计算思维推导、按难点选配的离线交互及Obsidian组织；原有独立技能保持原样。需要PPT才进入课件交付及其花叔设计流程，解析原卷不自动命制新题或更改正式数据。
+自编小卷、分层程序和实际验证范围见[解析核验示例](examples/exam-analysis/README.md)。
 
 ## 安装确定版本
 
@@ -60,14 +73,15 @@ GitHub ↔ 工作流源码仓库
 
 在可访问私有仓库的环境中，可以向 Codex 说明：
 
-> 使用 $skill-installer，从 tsetsetse/oi-teaching-workflows 的 v0.2.0 安装 skills/lesson-preparation 和 skills/courseware-delivery，目标为 ~/.agents/skills。已有同名安装先备份到技能发现目录之外。
+> 使用 $skill-installer，从 tsetsetse/oi-teaching-workflows 的 v0.3.0 安装 skills/lesson-preparation、skills/courseware-delivery 和 skills/contest-exam-analysis，目标为 ~/.agents/skills。已有同名安装先备份到技能发现目录之外。
 
 对应的官方安装器参数是：
 
 ```sh
 python3 <skill-installer目录>/scripts/install-skill-from-github.py \
   --repo tsetsetse/oi-teaching-workflows \
-  --path skills/lesson-preparation skills/courseware-delivery --ref v0.2.0 \
+  --path skills/lesson-preparation skills/courseware-delivery skills/contest-exam-analysis \
+  --ref v0.3.0 \
   --dest "$HOME/.agents/skills"
 ```
 
@@ -76,10 +90,10 @@ python3 <skill-installer目录>/scripts/install-skill-from-github.py \
 
 ```sh
 git archive --format=tar --prefix=lesson-preparation/ \
-  v0.2.0:skills/lesson-preparation -o /tmp/lesson-preparation-v0.2.0.tar
+  v0.3.0:skills/lesson-preparation -o /tmp/lesson-preparation-v0.3.0.tar
 ```
 
-将归档解压到空的临时目录，确认含 `lesson-preparation/SKILL.md`，再将整个技能文件夹复制到个人技能目录。`courseware-delivery` 可用相同方式分别导出。复制前确认同名目录不存在，保留归档和版本号。
+将归档解压到空的临时目录，确认含 `lesson-preparation/SKILL.md`，再将整个技能文件夹复制到个人技能目录。另两个工作流可用相同方式分别导出。复制前确认同名目录不存在，保留归档和版本号。
 新安装的技能通常在后续对话中自动发现；没有出现时重启 Codex，再确认技能路径和是否被禁用。[官方加载说明](https://learn.chatgpt.com/docs/build-skills)
 
 ## 更新与回退
@@ -103,16 +117,21 @@ python3 skills/lesson-preparation/scripts/check_lesson.py \
   --cases examples/intro-loop/cases.json
 python3 skills/courseware-delivery/scripts/check_pptx.py <课件绝对路径> \
   --bundle-root <交付根目录>
+python3 skills/contest-exam-analysis/scripts/check_inventory.py \
+  <人工核对的inventory.json绝对路径>
 ```
 
 不传 `--cases` 时仅检查围栏并列出代码块，**不会执行代码**。传入测试清单后会执行已经审阅的代码；临时目录不提供安全隔离。详见[检查与测试清单](skills/lesson-preparation/references/verification.md)。
 检查结果 `checks_passed` 只代表工具的检查范围，可能仍有跳过或未测程序；题面、来源、教学质量和成品显示需另行审查。
+试卷清单工具只核对人工题号/小问清单及本地文件关系，不读原卷、不执行程序、不计算分数；清单自身完整性、每层代码正确性和实际得分另行核验。
 
 ```text
 skills/lesson-preparation/   可独立安装的技能与资源
 skills/courseware-delivery/  课件交付、分镜模板与只读包检查
+skills/contest-exam-analysis/ 单题/整卷解析、分层代码与只读清单检查
 examples/intro-loop/        自编小课例、讲义、用例与验收记录
 examples/courseware/        自编课例的分镜试做与验证范围
+examples/exam-analysis/     自编混合题型与分层得分验证案例
 tests/                     检查工具的行为测试
 docs/superpowers/plans/     首版实施范围与进度
 .local/                    真实课程试运行记录（忽略，不提交）

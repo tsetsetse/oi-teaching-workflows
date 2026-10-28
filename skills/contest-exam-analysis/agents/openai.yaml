@@ -1,0 +1,4 @@
+interface:
+  display_name: "竞赛与等级考试解析核验"
+  short_description: "逐题解析单题、GESP与CSP整卷，衔接多视角解法、分层完整代码和核验"
+  default_prompt: "使用 $contest-exam-analysis，按指定原题或试卷逐题详细解析，给出多视角与分层得分的完整代码，并完成必要核验。"
