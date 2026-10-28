@@ -17,6 +17,8 @@
 | `interactive-algorithm-demo` | 可修改数据、逐步执行、代码与状态同步的离线HTML演示，附模板和自检 |
 | `csp-contest-author` | 命题、改编、组卷、数据与验题包；正式原卷题解由解析工作流负责 |
 
+完整套件下载见[GitHub Release v0.6.0](https://github.com/tsetsetse/oi-teaching-workflows/releases/tag/v0.6.0)，附件含十模块ZIP及SHA-256校验文件；个人技能安装步骤见下文。
+
 ## 作业测评与学情反馈
 
 `v0.5.0`新增 [practice-assessment-feedback](skills/practice-assessment-feedback/SKILL.md)，已纳入下方十模块固定版本安装清单。安装后可通过统一入口使用，也可直接指定该技能。
