@@ -1,0 +1,4 @@
+interface:
+  display_name: "阶段课程规划与学习路径"
+  short_description: "复用成熟课程形成标准母版与阶段实施计划，核对前置、课时、达标证据并按学情调整"
+  default_prompt: "使用 $curriculum-planning，依据现有课程、阶段目标和可用时间完成本次授权的课程路径或实施计划，区分前置假设与学习证据，并核算课时及调整分支。"

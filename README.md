@@ -1,12 +1,13 @@
 # OI Teaching Workflows
 
-面向青少儿 C++、Python 教学的工作流套件。通过 **编程教学工作台 `teaching-workflows`** 统一发起备课、课件交付、竞赛/等级考试解析及作业测评与学情反馈，按需读取配套 Skills。
+面向青少儿 C++、Python 教学的工作流套件。通过 **编程教学工作台 `teaching-workflows`** 统一发起阶段课程规划、备课、课件交付、竞赛/等级考试解析及作业测评与学情反馈，按需读取配套 Skills。
 
-`v0.5.0` 包含 **1个统一入口＋4个专门工作流＋4个完整能力模块**，共九个技能目录。统一入口组织流程，各模块保留独立调用。工作流源码、已安装技能和课程材料分别保存；同步 GitHub 不会自动更新本机技能，也不会改动课程。
+`v0.6.0` 包含 **1个统一入口＋5个专门工作流＋4个完整能力模块**，共十个技能目录。统一入口组织流程，各模块保留独立调用。工作流源码、已安装技能和课程材料分别保存；同步 GitHub 不会自动更新本机技能，也不会改动课程。
 
 | 模块 | 职责 |
 | --- | --- |
 | **`teaching-workflows` 编程教学工作台** | 判断任务、确定范围、安排交接、读取进度与续做 |
+| `curriculum-planning` 阶段课程规划与学习路径 | 标准课程母版、学生/班级阶段计划、课时与先修核算、达标检查及进度调整 |
 | `lesson-preparation` 备课讲义 | 来源核对、教学主线、教师讲稿、练习/作业/拓展、程序验收 |
 | `courseware-delivery` 课件交付 | 从确定讲义或解析制作分镜、PPTX、原生教师备注与验收 |
 | `contest-exam-analysis` 竞赛与等级考试解析核验 | 单题、GESP一至八级、CSP-J/S初复赛逐题解析，多视角与分层完整代码 |
@@ -18,7 +19,7 @@
 
 ## 作业测评与学情反馈
 
-`v0.5.0`新增 [practice-assessment-feedback](skills/practice-assessment-feedback/SKILL.md)，已纳入下方九模块固定版本安装清单。安装后可通过统一入口使用，也可直接指定该技能。
+`v0.5.0`新增 [practice-assessment-feedback](skills/practice-assessment-feedback/SKILL.md)，已纳入下方十模块固定版本安装清单。安装后可通过统一入口使用，也可直接指定该技能。
 
 > 使用 $teaching-workflows，根据本课讲义设计课后作业，并依据我提供的课堂观察或学生作答，生成详细教师诊断、补练安排和温和鼓励的家长草稿。
 
@@ -27,6 +28,16 @@
 教师版逐个主要问题说明证据、原因与待确认、具体教学改动、补练知识关系、完整习题/提示/答案或程序、测试与复验标准。家长版使用适合微信的通俗文字，肯定真实表现，温和说明待巩固环节与后续帮助；提示后订正不写成独立掌握，没有历史记录不写进步比较。
 
 评分按本次规则处理，缺答、未测与提示程度分别记录；缺交计分未约定时不静默记零。家长文字仅生成草稿，不代为发送。真实学生记录留在课程项目；[自编完整示例](examples/practice-feedback/README.md)与[实际验证](examples/practice-feedback/verification.md)不代表真实课堂或官方考试。
+
+## 阶段课程规划与学习路径
+
+`v0.6.0`新增 [curriculum-planning](skills/curriculum-planning/SKILL.md)，已纳入十模块固定版本安装清单。支持标准课程路径/讲义母版与具体学生/班级阶段实施计划。成熟多章讲义可以直接复用和映射，不因缺个人数据而无法整理标准层；实施层区分课程前置假设、实际证据和未来达标条件，核算每课与总时间。
+
+路径可依据已有课程、目标倒推、薄弱补强或项目驱动。交付目标与现状、知识前置、逐课任务/时间、达标检查、补强和调整记录；规划完成后按用户要求再衔接备课、课件和测评。续做保留已完成课次及实际记录，只改获准的未来或受影响安排。
+
+> 使用 $teaching-workflows，根据这份已有课程和本班学习记录，安排六次90分钟的阶段计划，列出每课任务、达标检查和未达标分支；保留原讲义，暂不制作PPT。
+
+完整自编示例见[阶段规划案例](examples/curriculum-planning/README.md)，开发阶段实际检查与未测范围见[验证记录](examples/curriculum-planning/verification.md)；正式发布与本机安装证据见[v0.6.0验证记录](docs/v0.6.0-release-validation.md)。
 
 ## 安装：先取得固定版本，再启用
 
@@ -42,22 +53,22 @@
 可用只读命令确认固定标签可访问：
 
 ```sh
-git ls-remote https://github.com/tsetsetse/oi-teaching-workflows.git refs/tags/v0.5.0
+git ls-remote https://github.com/tsetsetse/oi-teaching-workflows.git refs/tags/v0.6.0
 ```
 
 若本机使用SSH认证，可改用下列预检；官方安装器的Git方式会先尝试HTTPS，失败后尝试SSH：
 
 ```sh
-git ls-remote git@github.com:tsetsetse/oi-teaching-workflows.git refs/tags/v0.5.0
+git ls-remote git@github.com:tsetsetse/oi-teaching-workflows.git refs/tags/v0.6.0
 ```
 
 任一方式返回标签记录即可继续。两种方式都失败时，根据Git返回的信息核对网络、仓库访问权限和对应认证；无记录但没有报错时核对该标签是否存在。
 
-### 2. 用官方安装器把九个目录装到空的暂存位置
+### 2. 用官方安装器把十个目录装到空的暂存位置
 
 可以直接给 Codex 下面这段任务：
 
-> 使用 $skill-installer，从 tsetsetse/oi-teaching-workflows 的 v0.5.0 取得 README 列出的全部九个 skills 目录。先安装到新建的临时目录，核对资源完整性，再安装到当前环境实际发现的个人技能目录。已有同名技能先核对差异并完整备份到技能发现目录之外，保留自定义修改及原有别名关系；不要直接覆盖或合并旧目录。完成后报告版本、安装位置、备份位置和实际核验结果。
+> 使用 $skill-installer，从 tsetsetse/oi-teaching-workflows 的 v0.6.0 取得 README 列出的全部十个 skills 目录。先安装到新建的临时目录，核对资源完整性，再安装到当前环境实际发现的个人技能目录。已有同名技能先核对差异并完整备份到技能发现目录之外，保留自定义修改及原有别名关系；不要直接覆盖或合并旧目录。完成后报告版本、安装位置、备份位置和实际核验结果。
 
 命令方式如下。官方安装器通常随 Codex 的系统技能提供；若该文件不存在，让 Codex 定位当前 `skill-installer` 的实际脚本，不把下面路径当作所有宿主的固定路径。
 
@@ -66,11 +77,12 @@ workflow_installer="${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/s
 workflow_stage="$(mktemp -d /tmp/oi-teaching-install.XXXXXX)"
 python3 "$workflow_installer" \
   --repo tsetsetse/oi-teaching-workflows \
-  --ref v0.5.0 \
+  --ref v0.6.0 \
   --method git \
   --dest "$workflow_stage" \
   --path \
     skills/teaching-workflows \
+    skills/curriculum-planning \
     skills/lesson-preparation \
     skills/courseware-delivery \
     skills/contest-exam-analysis \
@@ -81,13 +93,13 @@ python3 "$workflow_installer" \
     skills/csp-contest-author
 ```
 
-`--method git` 使用已有Git认证，避免把私有仓库令牌写进安装步骤。暂存目录应出现上述九个完整文件夹，每个都有 `SKILL.md`；保留其 `agents/`、`references/`、`assets/`、`scripts/` 等实际资源，不能只复制九份说明文件。安装命令失败时检查暂存内容，修正后换一个空目录重试。
+`--method git` 使用已有Git认证，避免把私有仓库令牌写进安装步骤。暂存目录应出现上述十个完整文件夹，每个都有 `SKILL.md`；保留其 `agents/`、`references/`、`assets/`、`scripts/` 等实际资源，不能只复制十份说明文件。安装命令失败时检查暂存内容，修正后换一个空目录重试。
 
 官方安装器遇已有同名目录会停止；多目录安装不保证失败时自动撤回先前复制的目录。因此先暂存、后启用，不直接用它覆盖正在使用的旧版。
 
 ### 3. 核对暂存资源，完成首次安装或升级
 
-先查看九个目录及其 `SKILL.md`，并可执行包内两项自检：
+先查看十个目录及其 `SKILL.md`，并可执行包内两项自检：
 
 ```sh
 node "$workflow_stage/interactive-algorithm-demo/assets/prefix-sum.test.cjs"
@@ -96,11 +108,11 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 
 缺少 Node.js 时保留交互自检为未测，不能记作失败或已通过。上述自检分别覆盖模板算法与题包结构，不证明浏览器、真实试卷或全部教学结果正确。
 
-**首次安装：**确认个人技能目录中没有这九个同名目录或别名后，将暂存目录里的九个文件夹整体复制进去。例如最终应是 `~/.agents/skills/teaching-workflows/SKILL.md`，而不是 `~/.agents/skills/skills/teaching-workflows/SKILL.md`。不要把整个仓库放进去，也不要用指向开发源码的软链接代替固定版本副本。
+**首次安装：**确认个人技能目录中没有这十个同名目录或别名后，将暂存目录里的十个文件夹整体复制进去。例如最终应是 `~/.agents/skills/teaching-workflows/SKILL.md`，而不是 `~/.agents/skills/skills/teaching-workflows/SKILL.md`。不要把整个仓库放进去，也不要用指向开发源码的软链接代替固定版本副本。
 
 **升级已有安装：**按“更新与回退”处理；若已有个人定制版，先保留差异，再决定如何并入新版本。不要把暂存文件夹直接合并到旧文件夹，否则旧版本删除的资源可能残留。
 
-复制后逐文件比对暂存与目标的内容，确认九个技能及其全部资源一致。记录固定标签/提交、安装位置、文件校验结果、备份位置与尚未完成的检查。暂存副本在确认安装成功前保留。
+复制后逐文件比对暂存与目标的内容，确认十个技能及其全部资源一致。记录固定标签/提交、安装位置、文件校验结果、备份位置与尚未完成的检查。暂存副本在确认安装成功前保留。
 
 ### 4. 在教学项目中验证入口
 
@@ -124,7 +136,7 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 
 > 使用 $teaching-workflows，读取上次产物和检查记录，核对来源变化，继续尚未完成的部分。
 
-只读、仅规划、制作与局部修改按本次请求区分；只修改演示时直达演示模块，不附带重做讲义/PPT。原稿到讲义再到课件、原题到解析再到课件按需要串联；不要求题解转PPT时先另写一份讲义。四个专门工作流及四项能力仍支持直接指定。
+只读、仅规划、制作与局部修改按本次请求区分；只修改演示时直达演示模块，不附带重做讲义/PPT。原稿到讲义再到课件、原题到解析再到课件按需要串联；不要求题解转PPT时先另写一份讲义。五个专门工作流及四项能力仍支持直接指定。
 
 创建/修改时沿用已有任务记录；跨流程缺记录时，统一入口可在本次输出目录使用[任务进度模板](skills/teaching-workflows/assets/progress-template.md)。记录来源、依赖版本、当前阶段、检查证据、未完成项和有效视觉选择。只读时在对话中报告，不创建记录文件。说“继续”后先比对来源与产物，只重验受影响部分。
 
@@ -139,7 +151,7 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 ```markdown
 ## 编程教学工作流
 
-在本项目进行编程备课、课件制作、竞赛/等级考试解析，或续做相关任务时，优先读取可用的 teaching-workflows 统一入口，再按本次目标选用模块。用户明确指定某个专门技能时遵从该选择。只读讨论不写文件，课程材料和产物保存在本项目。与教学无关的任务不启用该流程。
+在本项目进行阶段课程规划、编程备课、课件制作、竞赛/等级考试解析、作业测评与学情反馈，或续做相关任务时，优先读取可用的 teaching-workflows 统一入口，再按本次目标选用模块。用户明确指定某个专门技能时遵从该选择。只读讨论不写文件，课程材料和产物保存在本项目。与教学无关的任务不启用该流程。
 ```
 
 这是项目范围的引导，仍需在当前环境验证触发与执行。套件没有安装全局会话钩子，也不会修改所有项目的规则；不承诺隐式匹配必达。
@@ -152,7 +164,7 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 
 ## 更新与回退
 
-1. 用新固定标签先取得空的暂存副本，核对九个技能和所需资源；不要移动已发布标签，也不要用 `main` 代替安装版本。
+1. 用新固定标签先取得空的暂存副本，核对十个技能和所需资源；不要移动已发布标签，也不要用 `main` 代替安装版本。
 2. 清点实际发现目录中的同名目录与别名，检查原技能是否有自定义修改。完整备份受影响旧目录到发现目录以外，例如 `~/.agents/skill-backups/oi-teaching-workflows/<日期>-<旧版本>/`；记录真实目标和别名关系。不要把备份留在 `skills/` 内以免被再次发现。
 3. 将对应旧目录移出发现位置，再复制完整新目录，逐文件核对。保留其他技能与系统技能；不要删除或合并整个个人技能目录。失败时移出已放入的新版目录，恢复本次备份和别名。
 4. 在新对话中完成只读入口检查和小课例；确认后保留版本及安装记录。版本标签、源码仓库、个人安装分别核对，不能把推送成功当作安装完成。
@@ -163,19 +175,19 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 需要维护源码或构建整合包时，另克隆固定标签到技能目录之外：
 
 ```sh
-git clone --branch v0.5.0 --depth 1 \
-  https://github.com/tsetsetse/oi-teaching-workflows.git oi-teaching-workflows-v0.5.0
-cd oi-teaching-workflows-v0.5.0
-python3 scripts/build_bundle.py --output dist/oi-teaching-workflows-0.5.0.zip
+git clone --branch v0.6.0 --depth 1 \
+  https://github.com/tsetsetse/oi-teaching-workflows.git oi-teaching-workflows-v0.6.0
+cd oi-teaching-workflows-v0.6.0
+python3 scripts/build_bundle.py --output dist/oi-teaching-workflows-0.6.0.zip
 ```
 
-ZIP采用根 `plugin.json` 与 `skills/` 的portable插件布局，含九个完整技能、整包说明、逐文件哈希清单，旁置整个ZIP的SHA-256。它用于整包携带与支持该格式宿主的后续测试；**生成或下载ZIP不等于宿主已加载/启用**。本版验证的是个人技能暂存安装和解包资源，不把portable插件宿主加载列为已通过。[官方打包说明](https://developers.openai.com/plugins/build/plugins)
+ZIP采用根 `plugin.json` 与 `skills/` 的portable插件布局，含十个完整技能、整包说明、逐文件哈希清单，旁置整个ZIP的SHA-256。它用于整包携带与支持该格式宿主的后续测试；**生成或下载ZIP不等于宿主已加载/启用**。本版验证的是个人技能暂存安装和解包资源，不把portable插件宿主加载列为已通过。[官方打包说明](https://developers.openai.com/plugins/build/plugins)
 
 在macOS/Linux可核对整个ZIP：
 
 ```sh
 cd dist
-shasum -a 256 -c oi-teaching-workflows-0.5.0.zip.sha256
+shasum -a 256 -c oi-teaching-workflows-0.6.0.zip.sha256
 ```
 
 开发检查从源码仓库根目录运行：
@@ -196,16 +208,17 @@ python3 skills/csp-contest-author/scripts/audit_package.py --self-test
 
 ```text
 skills/teaching-workflows/  统一入口、元数据与任务进度模板
+skills/curriculum-planning/ 阶段课程路径与实施计划（v0.6.0）
 skills/practice-assessment-feedback/ 作业测评与两版反馈
 skills/<其他模块>/         三个工作流及四项完整自有能力
 scripts/build_bundle.py     标准库整合包构建器
-examples/                  自编讲义、课件分镜和试卷解析验证案例
+examples/                  自编课程规划、讲义、课件与考试/测评验证案例
 tests/                     检查器与构建器测试
 docs/                      实施计划与验证记录
 .local/                    本机安装、真实课程试运行记录（忽略，不提交）
 dist/                      构建归档（忽略，不自动随Git提交）
 ```
 
-整包内容见[BUNDLE.md](BUNDLE.md)，本版发布与安装证据见[v0.5.0验证记录](docs/v0.5.0-release-validation.md)，统一入口的早期实施见[验证记录](docs/unified-entry-validation.md)；早期整合验证见[七模块开发包记录](docs/bundle-validation.md)，教学样例见[示例与验证](examples/README.md)。真实学生信息、密钥、付费课程与整套日常成品不进入源码仓库。
+整包内容见[BUNDLE.md](BUNDLE.md)，本版发布与安装证据见[v0.6.0验证记录](docs/v0.6.0-release-validation.md)，统一入口的早期实施见[验证记录](docs/unified-entry-validation.md)；早期整合验证见[七模块开发包记录](docs/bundle-validation.md)，教学样例见[示例与验证](examples/README.md)。真实学生信息、密钥、付费课程与整套日常成品不进入源码仓库。
 
 当前以私有仓库维护，未选择公开许可证。四项自有技能按用户授权纳入，第三方扩展未被自动复制或重新授权；课程材料的权利单独处理。
