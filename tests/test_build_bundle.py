@@ -45,6 +45,22 @@ class BundleChecks(unittest.TestCase):
         self.assertEqual(report["sha256"], hashlib.sha256(self.output.read_bytes()).hexdigest())
         self.assertIn(report["sha256"], self.output.with_suffix(".zip.sha256").read_text())
 
+    def test_repository_bundle_contains_complete_project_workflow(self):
+        repository = SCRIPT.parents[1]
+        self.module.build_bundle(repository, self.output)
+        with ZipFile(self.output) as package:
+            manifest = json.loads(package.read("bundle-manifest.json"))
+            self.assertIn("project-teaching", manifest["skills"])
+            folder = repository / "skills/project-teaching"
+            for name in [
+                "SKILL.md", "agents/openai.yaml",
+                "references/learning-design.md", "references/language-paths.md",
+                "references/handoffs-and-verification.md",
+                "assets/project-design-template.md", "assets/acceptance-template.md",
+            ]:
+                member = "skills/project-teaching/" + name
+                self.assertEqual(package.read(member), (folder / name).read_bytes())
+
     def test_runtime_caches_are_excluded(self):
         p = self.root / "skills/alpha"
         (p / ".DS_Store").write_bytes(b"cache")

@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目教学与作品验收"
+  short_description: "围绕知识点设计情境与阶段作品，衔接Python和C++教学、独立迁移及作品验收"
+  default_prompt: "使用 $project-teaching，根据学生基础和本次知识目标设计或改造项目课，说明知识如何解决任务需求、教师支架与独立范围，并完成本次授权的制作或验收。"

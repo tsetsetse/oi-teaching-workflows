@@ -1,13 +1,14 @@
 # OI Teaching Workflows
 
-面向青少儿 C++、Python 教学的工作流套件。通过 **编程教学工作台 `teaching-workflows`** 统一发起阶段课程规划、备课、课件交付、竞赛/等级考试解析及作业测评与学情反馈，按需读取配套 Skills。
+面向青少儿 C++、Python 教学的工作流套件。通过 **编程教学工作台 `teaching-workflows`** 统一发起阶段规划、项目教学与作品验收、备课、课件交付、竞赛/等级考试解析及作业测评与学情反馈，按需读取配套 Skills。
 
-`v0.6.0` 包含 **1个统一入口＋5个专门工作流＋4个完整能力模块**，共十个技能目录。统一入口组织流程，各模块保留独立调用。工作流源码、已安装技能和课程材料分别保存；同步 GitHub 不会自动更新本机技能，也不会改动课程。
+当前源码为 **0.7.0-dev：1个统一入口＋6个专门工作流＋4个完整能力模块**，共十一个技能目录。已发布正式版仍为 **v0.6.0，共十个目录，不含新增project-teaching**；下方正式安装命令继续锁定该标签。统一入口组织流程，各模块保留独立调用。工作流源码、已安装技能和课程材料分别保存；同步GitHub不会自动更新本机技能或改动课程。
 
 | 模块 | 职责 |
 | --- | --- |
 | **`teaching-workflows` 编程教学工作台** | 判断任务、确定范围、安排交接、读取进度与续做 |
 | `curriculum-planning` 阶段课程规划与学习路径 | 标准课程母版、学生/班级阶段计划、课时与先修核算、达标检查及进度调整 |
+| `project-teaching` 项目教学与作品验收（源码开发版） | 各知识点情境化、项目课改造/创建、阶段版本、教师支架及功能/解释/独立/迁移验收 |
 | `lesson-preparation` 备课讲义 | 来源核对、教学主线、教师讲稿、练习/作业/拓展、程序验收 |
 | `courseware-delivery` 课件交付 | 从确定讲义或解析制作分镜、PPTX、原生教师备注与验收 |
 | `contest-exam-analysis` 竞赛与等级考试解析核验 | 单题、GESP一至八级、CSP-J/S初复赛逐题解析，多视角与分层完整代码 |
@@ -17,7 +18,19 @@
 | `interactive-algorithm-demo` | 可修改数据、逐步执行、代码与状态同步的离线HTML演示，附模板和自检 |
 | `csp-contest-author` | 命题、改编、组卷、数据与验题包；正式原卷题解由解析工作流负责 |
 
-完整套件下载见[GitHub Release v0.6.0](https://github.com/tsetsetse/oi-teaching-workflows/releases/tag/v0.6.0)，附件含十模块ZIP及SHA-256校验文件；个人技能安装步骤见下文。
+正式套件下载见[GitHub Release v0.6.0](https://github.com/tsetsetse/oi-teaching-workflows/releases/tag/v0.6.0)，附件含十模块ZIP及SHA-256校验文件；个人技能安装步骤见下文。0.7.0-dev尚无对应正式发布和固定标签安装，不将开发源码写成已发布版本。
+
+## 项目教学与作品验收（源码开发版）
+
+[project-teaching](skills/project-teaching/SKILL.md)支持已有讲义项目化改造、围绕知识点创建项目课和验收已有作品。孩子从功能需求发现知识的用途，通过预测、状态追踪和阶段版本完善作品，再提炼规则、撤去支架并独立迁移。
+
+Python方向覆盖整个语法阶段及相应综合应用，Turtle衔接只是一个场景；C++按基础语法、算法应用、综合实践选择契约、建模、语言实现、范围与程序核验要求。教师提供的界面和初始代码与学生独立实现分别记录；四维验收为功能、解释、独立程度和迁移。
+
+本源码目录可直接指定读取 `skills/project-teaching/SKILL.md` 试用，输出放到自己的教学项目；新版正式发布与个人技能安装另行执行。正式v0.6.0安装不会获得本模块。源码入口调用示例：
+
+> 读取本仓库skills/teaching-workflows/SKILL.md，为已经学过输入与条件的Python班设计90分钟项目课，引入while；先给方案，不写课程文件，说明功能需求、版本、教师支架和独立迁移。
+
+已确定项目设计后由备课模块细化，PPT、交互、作业反馈按需要衔接。自编[充能课例](examples/project-teaching/README.md)与[开发验证](docs/project-teaching-validation.md)区分实际程序运行、模型前向执行和课堂未测，不复制真实课程或学生记录。
 
 ## 作业测评与学情反馈
 
@@ -138,7 +151,7 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 
 > 使用 $teaching-workflows，读取上次产物和检查记录，核对来源变化，继续尚未完成的部分。
 
-只读、仅规划、制作与局部修改按本次请求区分；只修改演示时直达演示模块，不附带重做讲义/PPT。原稿到讲义再到课件、原题到解析再到课件按需要串联；不要求题解转PPT时先另写一份讲义。五个专门工作流及四项能力仍支持直接指定。
+只读、仅规划、制作与局部修改按本次请求区分；只修改演示时直达演示模块，不附带重做讲义/PPT。原稿到讲义再到课件、原题到解析再到课件按需要串联；不要求题解转PPT时先另写一份讲义。当前源码六个专门工作流及四项能力仍支持直接指定，正式v0.6.0包含其中五个工作流。
 
 创建/修改时沿用已有任务记录；跨流程缺记录时，统一入口可在本次输出目录使用[任务进度模板](skills/teaching-workflows/assets/progress-template.md)。记录来源、依赖版本、当前阶段、检查证据、未完成项和有效视觉选择。只读时在对话中报告，不创建记录文件。说“继续”后先比对来源与产物，只重验受影响部分。
 
@@ -166,7 +179,7 @@ python3 "$workflow_stage/csp-contest-author/scripts/audit_package.py" --self-tes
 
 ## 更新与回退
 
-1. 用新固定标签先取得空的暂存副本，核对十个技能和所需资源；不要移动已发布标签，也不要用 `main` 代替安装版本。
+1. 用新固定标签先取得空的暂存副本，核对该版本的全部技能和所需资源（v0.6.0为十个）；不要移动已发布标签，也不要用 `main` 代替安装版本。
 2. 清点实际发现目录中的同名目录与别名，检查原技能是否有自定义修改。完整备份受影响旧目录到发现目录以外，例如 `~/.agents/skill-backups/oi-teaching-workflows/<日期>-<旧版本>/`；记录真实目标和别名关系。不要把备份留在 `skills/` 内以免被再次发现。
 3. 将对应旧目录移出发现位置，再复制完整新目录，逐文件核对。保留其他技能与系统技能；不要删除或合并整个个人技能目录。失败时移出已放入的新版目录，恢复本次备份和别名。
 4. 在新对话中完成只读入口检查和小课例；确认后保留版本及安装记录。版本标签、源码仓库、个人安装分别核对，不能把推送成功当作安装完成。
@@ -183,7 +196,13 @@ cd oi-teaching-workflows-v0.6.0
 python3 scripts/build_bundle.py --output dist/oi-teaching-workflows-0.6.0.zip
 ```
 
-ZIP采用根 `plugin.json` 与 `skills/` 的portable插件布局，含十个完整技能、整包说明、逐文件哈希清单，旁置整个ZIP的SHA-256。它用于整包携带与支持该格式宿主的后续测试；**生成或下载ZIP不等于宿主已加载/启用**。本版验证的是个人技能暂存安装和解包资源，不把portable插件宿主加载列为已通过。[官方打包说明](https://developers.openai.com/plugins/build/plugins)
+上述固定标签命令构建v0.6.0十模块包。在当前0.7.0-dev源码目录构建十一模块开发包使用：
+
+```sh
+python3 scripts/build_bundle.py --output dist/oi-teaching-workflows-0.7.0-dev.zip
+```
+
+ZIP采用根 `plugin.json` 与 `skills/` 的portable插件布局，含该版本全部完整技能、整包说明、逐文件哈希清单，旁置整个ZIP的SHA-256。它用于整包携带与支持该格式宿主的后续测试；**生成或下载ZIP不等于宿主已加载/启用**。正式v0.6.0验证了个人技能暂存安装，当前开发包另验解包资源；portable插件宿主加载均未列为通过。[官方打包说明](https://developers.openai.com/plugins/build/plugins)
 
 在macOS/Linux可核对整个ZIP：
 
@@ -198,6 +217,8 @@ shasum -a 256 -c oi-teaching-workflows-0.6.0.zip.sha256
 python3 -m unittest discover -s tests -v
 python3 skills/lesson-preparation/scripts/check_lesson.py \
   examples/intro-loop/source-讲义版.md --cases examples/intro-loop/cases.json
+python3 skills/lesson-preparation/scripts/check_lesson.py \
+  examples/project-teaching/lesson.md --cases examples/project-teaching/cases.json
 python3 skills/contest-exam-analysis/scripts/check_inventory.py \
   examples/exam-analysis/inventory-mini.json
 python3 skills/contest-exam-analysis/scripts/check_inventory.py \
@@ -211,6 +232,7 @@ python3 skills/csp-contest-author/scripts/audit_package.py --self-test
 ```text
 skills/teaching-workflows/  统一入口、元数据与任务进度模板
 skills/curriculum-planning/ 阶段课程路径与实施计划（v0.6.0）
+skills/project-teaching/   知识点情境化、项目课与作品验收（0.7.0-dev）
 skills/practice-assessment-feedback/ 作业测评与两版反馈
 skills/<其他模块>/         三个工作流及四项完整自有能力
 scripts/build_bundle.py     标准库整合包构建器
@@ -221,6 +243,6 @@ docs/                      实施计划与验证记录
 dist/                      构建归档（忽略，不自动随Git提交）
 ```
 
-整包内容见[BUNDLE.md](BUNDLE.md)，本版发布与安装证据见[v0.6.0验证记录](docs/v0.6.0-release-validation.md)，统一入口的早期实施见[验证记录](docs/unified-entry-validation.md)；早期整合验证见[七模块开发包记录](docs/bundle-validation.md)，教学样例见[示例与验证](examples/README.md)。真实学生信息、密钥、付费课程与整套日常成品不进入源码仓库。
+整包内容见[BUNDLE.md](BUNDLE.md)，当前开发证据见[项目教学验证](docs/project-teaching-validation.md)，正式发布与安装证据见[v0.6.0验证记录](docs/v0.6.0-release-validation.md)；早期统一入口见[验证记录](docs/unified-entry-validation.md)，教学样例见[示例与验证](examples/README.md)。真实学生信息、密钥、付费课程与整套日常成品不进入源码仓库。
 
 当前以私有仓库维护，未选择公开许可证。四项自有技能按用户授权纳入，第三方扩展未被自动复制或重新授权；课程材料的权利单独处理。

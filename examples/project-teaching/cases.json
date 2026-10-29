@@ -1,0 +1,18 @@
+{
+  "programs": [
+    {"block": 1, "cases": [{"stdin": "", "stdout": "0\n"}]},
+    {"block": 2, "cases": [{"stdin": "", "stdout": "1\n"}]},
+    {"block": 3, "cases": [
+      {"stdin": "3\n", "stdout": "1\n2\n3\n完成\n"},
+      {"stdin": "0\n", "stdout": "完成\n"},
+      {"stdin": "1\n", "stdout": "1\n完成\n"},
+      {"stdin": "20\n", "stdout": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n完成\n"}
+    ]},
+    {"block": 4, "cases": [
+      {"stdin": "3\n", "stdout": "2\n1\n0\n结束\n"},
+      {"stdin": "0\n", "stdout": "结束\n"},
+      {"stdin": "1\n", "stdout": "0\n结束\n"},
+      {"stdin": "20\n", "stdout": "19\n18\n17\n16\n15\n14\n13\n12\n11\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n0\n结束\n"}
+    ]}
+  ]
+}

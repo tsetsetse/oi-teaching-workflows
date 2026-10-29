@@ -2,7 +2,7 @@
 name: curriculum-planning
 description: 当用户需要整理标准课程路径或多章讲义母版、安排一个阶段的学习路线和逐课目标，或根据学情调整后续课次时使用。适用于已有课程、目标倒推、薄弱补强和项目驱动；单课详细备课与单次反馈使用对应工作流。
 metadata:
-  version: "0.6.0"
+  version: "0.7.0-dev"
 ---
 
 # 阶段课程规划与学习路径
@@ -49,6 +49,8 @@ metadata:
 ## 5. 交接与续做
 
 按 [交接与验收](references/handoffs-and-verification.md) 将具体课次卡交给 `lesson-preparation`；确定讲义后按需要进入 `courseware-delivery`。测评蓝图、学习证据和检查节点交 `practice-assessment-feedback`；选定题目/试卷的详细解析交 `contest-exam-analysis`。通过环境或同级目录读取对应技能；规划任务本身不自动启动其他产物。
+
+项目驱动路线保留每课知识需求、功能版本、支架与达标依据；获准细化项目课时可交 `project-teaching`，由它组织单课设计与作品验收，再按需要交备课。已确定的项目课次卡不重复规划；仅阶段计划时不制作整套项目代码或作品。
 
 收到新学情、时间或来源变化时，使用 [进度与调整模板](assets/progress-adjustment-template.md)，先保留已完成课次的原计划与实际记录，再计算已用、剩余和总时间，只调整获准的未来/受影响部分。后延目标保持可见，不改名为完成；原始作答、旧结论和原计划可追溯。需要改变既定目标或期限时给出具体取舍，已确认的选择不重复请求。
 
