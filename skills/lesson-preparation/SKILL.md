@@ -2,7 +2,7 @@
 name: lesson-preparation
 description: 当用户要求根据现有 C++ 或 Python 课程原稿备课、整理教师讲义、制作讲义版笔记或审阅备课方案时使用。适用于单课教学流程；单题解答、PPT制作、通用笔记排版不单独触发。
 metadata:
-  version: "0.7.0-dev"
+  version: "0.7.0"
 ---
 
 # 备课讲义工作流

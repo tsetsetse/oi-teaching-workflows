@@ -2,7 +2,7 @@
 name: project-teaching
 description: Use when users request Python 或 C++ 知识点的情境化、项目驱动教学，改造已有讲义为项目课，或验收学生编程作品。适用于整个语法阶段及相应算法/综合实践阶段；仅整理普通讲义、正式原卷解析或通用软件开发使用对应能力。
 metadata:
-  version: "0.7.0-dev"
+  version: "0.7.0"
 ---
 
 # 项目教学与作品验收
